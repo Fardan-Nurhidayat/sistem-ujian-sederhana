@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Seeder;
@@ -19,7 +20,7 @@ class UserSeeder extends Seeder
             ],
             [
                 'name' => 'Teacher',
-                'email' => 'teacher@gmaiil.com',
+                'email' => 'teacher@gmail.com',
                 'role' => 'teacher',
             ],
             [
@@ -44,6 +45,17 @@ class UserSeeder extends Seeder
             );
 
             $user->syncRoles([$userData['role']]);
+
+            if ($userData['role'] === 'student') {
+                Siswa::updateOrCreate(
+                    ['user_id' => $user->id],
+                    [
+                        'nis' => '20260001',
+                        'alamat' => 'Jl. Pendidikan No. 1',
+                        'kelas' => 'X RPL 1',
+                    ]
+                );
+            }
         }
     }
 }

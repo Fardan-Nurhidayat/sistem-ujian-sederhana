@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
+            $table->string('nis')->unique();
+            $table->text('alamat');
+            $table->string('kelas');
+            $table->foreignId('user_id')->unique()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

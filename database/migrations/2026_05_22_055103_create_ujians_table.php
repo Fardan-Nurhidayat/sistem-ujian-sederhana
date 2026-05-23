@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('ujians', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->foreignId('mata_pelajaran_id')->constrained('mata_pelajarans')->cascadeOnDelete();
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

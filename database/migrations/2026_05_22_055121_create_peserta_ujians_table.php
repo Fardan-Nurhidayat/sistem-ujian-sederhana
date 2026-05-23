@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('peserta_ujians', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('siswa_id')->constrained('siswas')->cascadeOnDelete();
+            $table->foreignId('ujian_id')->constrained('ujians')->cascadeOnDelete();
+            $table->unsignedSmallInteger('nilai')->nullable();
+            $table->unique(['siswa_id', 'ujian_id']);
             $table->timestamps();
         });
     }

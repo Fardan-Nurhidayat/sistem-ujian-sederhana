@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('mata_pelajarans', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->string('kode')->unique();
+            $table->unsignedSmallInteger('kkm');
+            $table->foreignId('guru_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
